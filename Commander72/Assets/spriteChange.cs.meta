@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf276de208adc41d79c1410d042c1837
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - lifeIcon: {fileID: 21300000, guid: 08b9e664fa0eb46f3a372c04007ec921, type: 3}
+  - flash: {fileID: 21300000, guid: 5d3af3ff77eae4896b879f6f4e0633ea, type: 3}
+  - teleportIcon: {fileID: 21300000, guid: 3e9fa8967d8954d45a298228fbdd2c8d, type: 3}
+  - shield: {fileID: 21300000, guid: c37dd18e94e6146ae9be3dfb4b358dcf, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
