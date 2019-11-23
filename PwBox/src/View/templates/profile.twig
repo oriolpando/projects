@@ -1,0 +1,219 @@
+{% extends "base.twig" %}
+{% block title %}Home{% endblock %}
+{% block javascript %}update.js{% endblock %}
+{% block css_file %}profile.css{% endblock %}
+
+{% block header %}
+    <nav id="logoDropdown" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/profile">
+            <img src="{{ srcProfileImg }}" id="imageUser"/>
+        </a>
+        <div class="navbar">
+            <div class="dropdown" id="positionNameProfile">
+                <button class="dropbtn" id="nameProfile">{{ username }}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/profile">My profile</a>
+                    <a href="/notifications">Notifications</a>
+                    <a href="/logOut">Logout</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <div>
+        <h8>Used space: {{ espai }} Mb</h8>
+
+        <div class="progress" style="height: 20px;">
+            <div placeholder="Espai" class="progress-bar" role="progressbar" style="width: {{ percentatge }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {% for error in errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+
+<div id="editProfile">
+    <div id="a">
+        <div id="validate" {{ validate }}>Remember that you have been send an email in order to validate your profile</div>
+        <a id="clickResend" href="/resendValidate" {{ validate }}>Click here to resend!</a>
+    </div>
+    <div class="container">
+        <div class="row base">
+            <div class="col">
+                <div class="buttonsEdit">
+                    <div class="container">
+                        <div class="row">
+                            <input type="submit" value="Edit" class="buttonEditInfo" data-toggle="modal" data-target="#EditInformation" onclick="noError()">
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Delete Account" class="buttonEditInfo" data-toggle="modal" data-target="#DeleteAccount">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div id = "userInfo">
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <h1>Your profile</h1>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="{{ srcProfileImg }}" id="CurrentImageUser" width="100" height="100">
+                                </div>
+                            </div>
+                            <div id="infoProfile">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="floatLabel">Name:</label>
+                                            <label class="floatLabel">{{ name }}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="floatLabel">Username:</label>
+                                            <label class="floatLabel" id="us">{{ username }}</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="floatLabel">Surname:</label>
+                                            <label class="floatLabel">{{ surname }}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="floatLabel">Email address:</label>
+                                            <label id = "mail" class="floatLabel">{{ email }}</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="floatLabel">Birth date:</label>
+                                            <label class="floatLabel">{{ birthDate }}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal -->
+    <div id="EditInformation" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Information</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group" id="imageUserEditProfile">
+                                        <img src="{{ srcProfileImg }}" id="NewImageUser" width="100" height="100">
+                                       <input id="buttonChange" accept="image/*" type='file' name="image" onchange="readURL(this)" />
+                                        <p id="fp2"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="errUpdate"><h7>ERROR UPDATE</h7></div>
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="floatLabel">New email address:</label>
+                                        <input type="email" id = "mailUp" name="email" placeholder="Enter new email address">
+                                        <span id="spanEmailUpdate" >Enter correct email</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="floatLabel">New Password:</label>
+                                        <input type="password" id="passUp" name="password" placeholder="Enter new password" onfocus="focusFunction()" onblur="blurFunction()" onkeyup="validatePsw()">
+                                        <span id="spanPswUpdate">Enter a correct password</span>
+                                    </div>
+                                    <div id="message">
+                                        <p id="uppercase" class="invalid">A <b>uppercase</b> letter</p>
+                                        <p id="number" class="invalid">A <b>number</b></p>
+                                        <p id="lengthmin" class="invalid">Minimum <b>6 characters</b></p>
+                                        <p id="lengthmax" class="invalid">Maximum <b>12 characters</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="floatLabel">Confirm password:</label>
+                                        <input type="password" id="passConfUp" name="confirmPassword" placeholder="Confirm the new password">
+                                        <span id="spanCpswUpdate">Enter same password</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <input type="submit" value="Confirm Changes" onclick="updateDb(event)">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="DeleteAccount" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Information</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p>Deleting your account will erase all folders and files that you have uploaded, including this that are shared with other users!<p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteUs()">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

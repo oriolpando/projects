@@ -1,0 +1,287 @@
+#navegacion {
+  float:left;
+}
+
+#minimap{
+  max-width: 200px;
+  max-height: 200px;
+  float: left;
+  padding: 0;
+  margin-left: 115px;
+}
+
+#equipocarac {
+  margin-left: 80px;
+  float:left;
+}
+
+#nombre{
+  margin-bottom: 10px;
+}
+
+#sexo{
+  margin-bottom: 10px;
+
+}
+
+#nivel{
+  margin-bottom: 10px;
+
+}
+
+#experiencia{
+  margin-bottom: 10px;
+
+}
+
+#ataque{
+  margin-bottom: 10px;
+
+}
+
+#defensa{
+  margin-bottom: 10px;
+
+}
+
+#guardar{
+  margin-top: 7%;
+  margin-bottom: 7%;
+  margin-left: 80%;
+  font-size: 100%;
+  font-family: Verdana,Helvetica;
+}
+
+#començar{
+  margin-top: 18%;
+  margin-left: 45%;
+  font-size: 100%;
+  font-family:Verdana,Helvetica;
+  width: 180px;
+  height: 60px;
+  border-radius: 8px;
+
+}
+
+#movesquerra{
+  font-size: 10px;
+}
+
+#movdreta{
+  font-size: 10px;
+}
+
+
+#movendavant{
+  font-size: 10px;
+}
+
+#movendarrere{
+  font-size: 10px;
+
+}
+
+p{
+  color: white;
+}
+
+
+.controles{
+  margin: 0 auto;
+}
+
+.base{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+body{
+  margin-top: 20px;
+  background-color: black;
+  background-image: url(https://cdna.artstation.com/p/assets/images/images/001/494/798/large/silvertm-mark12-2.jpg?1447408643);
+}
+
+
+
+.primerafila{
+  height: 500px;
+}
+
+label{
+  color: white;
+}
+
+h1{
+  font-family: fantasy;
+  text-align: center;
+  font-size: 65px;
+  color: white;
+  height: 40px;
+}
+
+h2{
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+/*  font: oblique bold 120% cursive;*/
+  font-size: 35px;
+  font-family: fantasy;
+}
+
+h5{
+  margin-top: 20px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  font-family: fantasy;
+}
+
+#bodywindownew{
+  margin: 0px;
+  padding: 0px;
+  background-image: url(https://pre00.deviantart.net/1cf6/th/pre/f/2012/021/c/1/c14fbb07fc936cb4ad23d0bdaf5e0079-d4n4zuk.jpg);
+  height: 530px;
+}
+
+#mochilaObjectes{
+  color: white;
+}
+
+#input{
+  width: 300px;
+}
+
+#inputNom{
+  width: 350px;
+}
+
+#Nom{
+  margin-left: 220px;
+  margin-top: 35px;
+  margin-bottom: 10px;
+}
+
+.controlsFletxes{
+  margin-top: 100px;
+}
+
+#titolControls{
+  margin-left: 120px;
+}
+
+
+#Sexe{
+  margin-left: 220px;
+  margin-top: 15px;
+}
+
+#RadioButtons{
+  margin-left: 260px;
+}
+
+#Boton{
+  margin-top: 50px;
+  margin-left: 320px;
+  border-radius: 10px;
+}
+
+#F{
+  margin-left: 20px;
+}
+
+#allButtons{
+  margin: 0 auto;
+  margin-left: 30px;
+  margin-top: 100px;
+}
+
+#recuperarpartida{
+  border-radius: 8px;
+}
+
+#novapartida{
+  margin-top: 30px;
+  border-radius: 8px;
+}
+
+#esborrarpartida{
+  margin-top: 30px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+}
+
+#guardarpartida{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;}
+
+.conjuntindex2{
+  margin-top: 100px;
+  margin-left: 370px;
+}
+
+.container{
+  margin-left: 70px;
+  max-width: 1400px;
+}
+
+
+/*PER FER LA FUNCIÓ DE PULSAR EL BOTÓ*/
+
+.button {
+  display: inline-block;
+  padding: 20px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3e8e41;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 7px #999;
+  margin: 9px;
+  padding: auto 0px;
+  width: 80px;
+
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/*PER A QUE PARPADEJI EL BOTO DE COMENÇAR*/
+.parpadeig{
+animation-name: parpadeo;
+animation-duration: 1s;
+animation-timing-function: linear;
+animation-iteration-count: infinite;
+
+-webkit-animation-name:parpadeo;
+-webkit-animation-duration: 1s;
+-webkit-animation-timing-function: linear;
+-webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{
+  0% { opacity: 1.0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.3; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {
+  0% { opacity: 1.0; }
+   50% { opacity: 0.3; }
+  100% { opacity: 1.0; }
+}

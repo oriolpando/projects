@@ -1,0 +1,52 @@
+.menu{
+    display: flex;
+    grid-area: menu;
+    background: white;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    color: white;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    bottom: 50px;
+    z-index: 200;
+}
+
+.levelMenu{
+    color: white;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    z-index: 200;
+}
+
+.warning{
+    display: flex;
+    color: white;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    top: 50px;
+    z-index: 200;
+}
+
+.instructions{
+    display: flex;
+    color: white;
+    flex-direction: column;
+    position: absolute;
+    justify-items: center;
+    align-items: center;
+    top: 50px;
+    left: 50px;
+    z-index: 200;
+}
+
+.instructions img{
+    max-width: 200px;
+}

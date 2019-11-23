@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="json-java">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/DPOO-Restaurant-Servidor/libs/json-java.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DPOO-Restaurant-Servidor/libs/gson-2.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DPOO-Restaurant-Servidor/libs/mysql-connector-java-5.1.46-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DPOO-Restaurant-Servidor/libs/mysql-connector-java-5.1.46.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

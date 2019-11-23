@@ -1,0 +1,281 @@
+{% extends "base.twig" %}
+{% block title %}Home{% endblock %}
+{% block javascript %}dashboard.js{% endblock %}
+{% block css_file %}home.css{% endblock %}
+{% block header %}
+    <nav id="logoDropdown" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/profile">
+            <img src="{{ srcProfileImg }}" id="imageUser"/>
+        </a>
+        <div class="navbar">
+            <div class="dropdown" id="positionNameProfile">
+                <button class="dropbtn" id="nameProfile">{{ username }}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/profile">My profile</a>
+                    <a href="/notifications">Notifications</a>
+                    <a href="/logOut">Logout</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <div>
+        <h8>Used space: {{ espai }} Mb</h8>
+
+        <div class="progress" style="height: 20px;">
+            <div placeholder="Espai" class="progress-bar" role="progressbar" style="width: {{ percentatge }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container" id="contentProfile">
+
+        <div class="row">
+            <div class="col-3">
+                <div class="buttonsEdit">
+                    <div class="container">
+                        <div class="row">
+                            <button type="button" id="addF" class="btn btn-info btn-lg buttons" data-toggle="modal" data-target="#EditInformation">Add Folder</button>
+                        </div>
+                        <div class="row">
+                            {#<input type="submit" value="Delete Account" id="deleteAcc" class=" buttonEditInfo" data-toggle="modal" data-target="#DeleteAccount">#}
+                            <button type="button" id="returntF" class="btn btn-info btn-lg buttons " onclick="toRoot()">Return to root folder</button>
+                        </div>
+                        <div class="row">
+                            {#<input type="submit" value="Delete Account" id="deleteAcc" class=" buttonEditInfo" data-toggle="modal" data-target="#DeleteAccount">#}
+                            <button type="button" id="returntF" class="btn btn-info btn-lg buttons " onclick="toSharedRoot()">Return to root shared folder</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" id="uploadF" class="btn btn-info btn-lg buttons" data-toggle="modal" data-target="#ModalFile" >Upload File</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" id="uploadSF" class="btn btn-info btn-lg buttons" data-toggle="modal" data-target="#ModalSharedFile" >Upload Shared File</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" id="addSF" class="btn btn-info btn-lg buttons" data-toggle="modal" data-target="#ModalSharedFolder" >Add Shared Folder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" id="buttonProfile">
+                <form id="foldersFiles">
+                    <h3>Own Folders</h3>
+                    <div class="container ara">
+                        {{ folders|raw }}
+                    </div>
+                </form>
+                <br>
+                <br>
+                <form id="foldersFiles">
+                    <h3>Shared Folders</h3>
+                    <div class="container ara">
+                        {{ sharedFolders|raw }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+  {% for error in errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+
+
+
+    <!-- Modal -->
+    <div id="EditInformation" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add folder</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Choose the name for the folder</p>
+                    <form method="POST" enctype="multipart/form-data" action="/addFolder">
+                        <div class="container">
+                            <div class="form-group">
+                               <input type='text' placeholder="Nom" name="nom">
+                            </div>
+                        </div>
+                        <input type="submit"  value="Confirm">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="ModalFile" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload File</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <p>Choose the file to upload</p>
+                    <form method="POST" enctype="multipart/form-data" action="/addFile">
+                        <div class="container">
+                            <div class="form-group" id="formFitxer">
+                                <button type="button" class="btn btn-info" id = "nextFitxer" name ="nextFitxer" onclick="plusFitxer()">Puja un altre fitxer</button>
+                                <button type="button"  class="btn btn-warning" name="resetUpload" id="resetUpload" onclick="resetFitxers()">Reseteja</button>
+
+                            </div>
+                        </div>
+                        <input type="submit"  value="Confirm">
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="ModalShare" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Share Folder</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" action="/shareFolder">
+                        <div class="container">
+                            <div class="form-group">
+                                <input type="number" id="idFolder" name="idFolder" placeholder="" style="display: none">
+                                <label class="floatLabel">Share with (email):</label>
+                                <input type="email" id="email" name="email" placeholder="">
+                                <br><br>
+                                <label class="floatLabel">Role:</label>
+                                <select name="role">
+                                    <option value="Admin">Admin</option>
+                                    <option value="Reader">Reader</option>
+                                </select>
+                                <br>
+
+                            </div>
+                        </div>
+                        <input type="submit"  value="Confirm">
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="DeleteItem" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Information</h4>
+                </div>
+                <div class="modal-body">
+                    <label class="floatLabel" id="deleteIt" style="display: none"></label>
+                    <p>Careful! The folder/file (and its subdirectories if it has) will also be deleted for the other contributors.<p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteItemFin()">Delete Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="Rename" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Rename</h4>
+                </div>
+                <div class="modal-body">
+                    <p>New name</p>
+                    <form method="POST" enctype="multipart/form-data" action="">
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="floatLabel" id="renameId" style="display: none"></label>
+                                <input type='text' id="rename" placeholder="Nom" name="nom">
+                            </div>
+                        </div>
+                        <input type="button" onclick="renameItemFin()" value="Confirm">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="ModalSharedFolder" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Shared folder</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Choose the name for the folder</p>
+                    <form method="POST" enctype="multipart/form-data" action="/addSharedFolder">
+                        <div class="container">
+                            <div class="form-group">
+                                <input type='text' placeholder="Nom" name="nom">
+                            </div>
+                        </div>
+                        <input type="submit"  value="Confirm">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="ModalSharedFile" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload Shared File</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <p>Choose the file to upload</p>
+                    <form method="POST" enctype="multipart/form-data" action="/addSharedFile">
+                        <div class="container">
+                            <div class="form-group" id="formFitxer2">
+                                <button type="button" class="btn btn-info" id = "nextFitxer" name ="nextFitxer" onclick="plusFitxer2()">Puja un altre fitxer</button>
+                                <button type="button"  class="btn btn-warning" name="resetUpload" id="resetUpload" onclick="resetFitxers2()">Reseteja</button>
+
+                            </div>
+                        </div>
+                        <input type="submit"  value="Confirm">
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
