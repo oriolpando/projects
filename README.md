@@ -2,6 +2,11 @@
 
 _Those are the projects I have worked on, mainly durimg my degree on Multimedia Engeneering_
 
+## API Proxy
+_This is the project I presented as my end-of-degree project and it consists on a Moodle plugin module that enables a teacher to create a Moodle connector which allows to create remote services hosted by Moodle itself and to calculate and display usage statistics for these services - whether they are hosted by Moodle itself or on other remote servers.
+
+It has been developed mainly with PHP, but it also includes MYSQL, CSS and JavaScript._
+
 ## CentralizedRestaurant
 _In the Object Oriented Design Programming subject in 2nd grade, a group project of five people was carried out in which it was required to implement a system to facilitate both restaurant reservations and requests. This practice required a client and server implementation (in Java)._
 
