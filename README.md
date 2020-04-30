@@ -1,6 +1,6 @@
 # Projects
 
-_Those are the projects I have worked on, mainly durimg my degree on Multimedia Engeneering_
+_Those are the projects I have worked on, mainly during my degree on Multimedia Engeneering_
 
 ## API Proxy
 _This is the project I presented as my end-of-degree project and it consists on a Moodle plugin module that enables a teacher to create a Moodle connector which allows to create remote services hosted by Moodle itself and to calculate and display usage statistics for these services - whether they are hosted by Moodle itself or on other remote servers.It has been developed mainly with PHP, but it also includes MYSQL, CSS and JavaScript._
